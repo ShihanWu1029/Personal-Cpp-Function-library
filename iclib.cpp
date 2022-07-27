@@ -1,4 +1,5 @@
-//Please read 'Read me before using iclib.md'first
+//Please read 'BeforeUsingIclib.md'first
+//请先阅读“BeforeUsingIclib.md”
 #include <iostream>
 #include <cstdlib>
 #include <windows.h>
