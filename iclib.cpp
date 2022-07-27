@@ -7,15 +7,14 @@
 #include <algorithm>
 using namespace std;
 
-
 /*
 icLib
 	Author: iNeverNobody
 */
-long long pow(int a,int b){//返回a的b次方（不支持小数） 
+long long pow(int __firstnumber,int __powernumber){//返回a的b次方（不支持小数） 
 	int record=1;
-	for(int i=1;i<=b;i++){
-		record*=a;
+	for(int i=1;i<=__powernumber;i++){
+		record*=__firstnumber;
 	}
 	return record;
 }
