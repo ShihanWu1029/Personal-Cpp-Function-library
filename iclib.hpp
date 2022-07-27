@@ -155,3 +155,36 @@ int flatis(string __str,char __letter){//在字符串__str中找__letter出现�
 	}
 	return __count;
 }
+class intStack{//数字类型栈 
+	private:
+		int __arr[100000]={0};unsigned int __top=0;
+	public:
+		inline unsigned long long size(){
+			return this->__top;//返回栈数据量 
+		}
+		inline int top(){
+			return this->__arr[(this->__top-1)];
+		}//返回栈顶元素（不弹出） 
+		inline int at(unsigned long long addr){
+			return this->__arr[addr];//返回a[addr] 
+		}
+		inline int pop(){
+			int tmp=this->__arr[this->__top-1];
+			this->__arr[this->__top-1]=0;
+			this->__top-=1;
+			return tmp;
+		}//弹出
+		inline void push(int __number){
+			this->__arr[this->__top++]=__number;
+		}//推入
+		inline int* begin(){
+			return &(this->__arr[0]);
+		}//返回栈底地址 
+		inline int* end(){
+			if(this->__top==0)  return &(this->__arr[0]);
+			else return &(this->__arr[this->__top-1]);
+		}//返回栈顶地址 
+		inline bool empty(){
+			return this->__top==0;
+		}//返回是否为空 
+};
