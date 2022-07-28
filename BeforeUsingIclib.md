@@ -12,4 +12,5 @@
         <li>void sort_bubble(int[],int)&nbsp;&nbsp;&nbsp;&nbsp;格式为sort_bubble(int a[],int __size),__size输入a数组的长度。运用冒泡排序给a数组排序，无返回值。</li>
         <li>......</li>
     </ul>
+    (其实吧，你也许可以去wiki看一下？)
 </div>
