@@ -1,5 +1,5 @@
-//Please read 'BeforeUsingIclib.md'first
-//请先阅读“BeforeUsingIclib.md”
+//Maybe you can read 'BeforeUsingIclib.md'first
+//你也许可以先阅读“BeforeUsingIclib.md”
 #include <iostream>
 #include <cstdlib>
 #include <windows.h>
@@ -157,34 +157,44 @@ int flatis(string __str,char __letter){//在字符串__str中找__letter出现�
 }
 class intStack{//数字类型栈 
 	private:
-		int __arr[100000]={0};unsigned int __top=0;
+		int __arr[100000]={0};int __top=0;
 	public:
-		inline unsigned long long size(){
+		inline int size(){
 			return this->__top;//返回栈数据量 
 		}
 		inline int top(){
 			return this->__arr[(this->__top-1)];
 		}//返回栈顶元素（不弹出） 
-		inline int at(unsigned long long addr){
-			return this->__arr[addr];//返回a[addr] 
+		inline int at(unsigned int addr){
+			return this->__arr[addr-1];//返回第addr个值 
 		}
 		inline int pop(){
-			int tmp=this->__arr[this->__top-1];
-			this->__arr[this->__top-1]=0;
-			this->__top-=1;
-			return tmp;
+			if(this->__top>0){
+				int tmp=this->__arr[this->__top-1];
+				this->__arr[this->__top-1]=0;
+				this->__top-=1;
+				return tmp; 
+			}else if(this->__top==0){
+				cout<<"Error: Empty array!There's nothing to pop."<<endl;return 0;
+			}else{
+				cout<<"Error: __top shouldn't smaller than 0!Excepted error.";return 0;
+			}
 		}//弹出
 		inline void push(int __number){
 			this->__arr[this->__top++]=__number;
 		}//推入
-		inline int* begin(){
+		inline int* last(){
 			return &(this->__arr[0]);
 		}//返回栈底地址 
-		inline int* end(){
+		inline int* first(){
 			if(this->__top==0)  return &(this->__arr[0]);
 			else return &(this->__arr[this->__top-1]);
 		}//返回栈顶地址 
 		inline bool empty(){
-			return this->__top==0;
+			if(this->__top>=0){
+				return this->__top==0;
+			}else{
+				cout<<"Error: __top shouldn't smaller than 0!Excepted error.";return 0;
+			}
 		}//返回是否为空 
 };
