@@ -182,7 +182,7 @@ class intStack{//数字类型栈
 		}//弹出
 		inline void push(int __number){
 			if(this->__top>100000){
-				cout<<"Warning: At class intStack, __top is bigger than the max element you can put.";return 0;
+				cout<<"Warning: At class intStack, __top is bigger than the max element you can put.";return;
 			}
 			this->__arr[this->__top++]=__number;
 		}//推入
