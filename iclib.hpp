@@ -12,7 +12,7 @@ icLib
 	Author: iNeverNobody
 */
 long long pow(int __firstnumber,int __powernumber){//返回a的b次方（不支持小数） 
-	int record=1;
+	long long record=1;
 	for(int i=1;i<=__powernumber;i++){
 		record*=__firstnumber;
 	}
@@ -157,7 +157,7 @@ int flatis(string __str,char __letter){//在字符串__str中找__letter出现�
 }
 class intStack{//数字类型栈 
 	private:
-		int __arr[100000]={0};int __top=0;
+		int __arr[100001]={0};int __top=0;
 	public:
 		inline int size(){
 			return this->__top;//返回栈数据量 
@@ -175,12 +175,15 @@ class intStack{//数字类型栈
 				this->__top-=1;
 				return tmp; 
 			}else if(this->__top==0){
-				cout<<"Error: Empty array!There's nothing to pop."<<endl;return 0;
+				cout<<"Error: At class intStack, Empty array!There's nothing to pop."<<endl;return 0;
 			}else{
-				cout<<"Error: __top shouldn't smaller than 0!Excepted error.";return 0;
+				cout<<"Error: At class intStack, __top shouldn't smaller than 0!Excepted error.";return 0;
 			}
 		}//弹出
 		inline void push(int __number){
+			if(this->__top>100000){
+				cout<<"Warning: At class intStack, __top is bigger than the max element you can put.";return 0;
+			}
 			this->__arr[this->__top++]=__number;
 		}//推入
 		inline int* last(){
@@ -194,7 +197,15 @@ class intStack{//数字类型栈
 			if(this->__top>=0){
 				return this->__top==0;
 			}else{
-				cout<<"Error: __top shouldn't smaller than 0!Excepted error.";return 0;
+				cout<<"Error: At class intStack, __top shouldn't smaller than 0!Excepted error.";return 0;
 			}
 		}//返回是否为空 
+};
+struct linkedList_node{
+	long long data;
+	linkedList_node *next;
+};
+struct linkedList_node_2way{
+	long long data;
+	linkedList_node_2way *next,*pre;
 };
