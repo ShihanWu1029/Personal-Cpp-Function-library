@@ -1,4 +1,6 @@
 #include <cmath>
+#include <string>
+using std::string;
 const unsigned long long inf=0x7ffffffff;
 
 template<typename T>long double maxof(T __firstInput,T __secondInput){		//返回两数中的较大值 
@@ -23,6 +25,12 @@ template<typename T>bool isEaqual(T a,T b){
 bool isLetter(char c){
 	return (c>='a'&& c<='z' || c>='A' && c<='Z');
 }
+bool isLetterSmall(char c){
+	return (c>='a' && c<='z');
+}
+bool isLetterBig(char c){
+	return (c>='A' && c<='Z');
+}
 bool isNumber(char c){
 	return (c>='0' && c<='9');
 }
@@ -46,8 +54,6 @@ template<class XType,class YType>class crdinate{			//用于构建坐标系
 		bool operator==(const crdinate __anthr){return (this->__Xpos==__anthr.__Xpos && this->__Ypos==__anthr.__Ypos);}
 		bool operator<=(const crdinate __anthr){return (this->__Xpos<=__anthr.__Xpos && this->__Ypos<=__anthr.__Ypos);}
 		bool operator>=(const crdinate __anthr){return (this->__Xpos>=__anthr.__Xpos && this->__Ypos>=__anthr.__Ypos);}
-		friend bool operator<(const crdinate __self,const crdinate __anthr);
-		friend bool operator>(const crdinate __self,const crdinate __anthr);
 		XType operator[](int __get){
 			if(__get>2 || __get<0) return 0;
 			if(__get==0) return this->__Xpos;
@@ -75,3 +81,39 @@ void counter_startAt(unsigned long long __startAt){__inCounterr=__startAt;}		//�
 void counter_plus(void){__inCounterr++;}	//将计数器加一
 void counter_plus_step(int __step){__inCounterr+=__step;}	//将计数器加Step 
 unsigned long long get_counter(void){return __inCounterr;}	//获取计数器累加的值 
+
+template<class type>class list{
+	private:
+		type *__a;
+		unsigned __SSize=0;
+	public:
+		bool isSet=false;
+		list(){		}
+		list(int __size){this->__a=new type[__size+1];isSet=true;this->__SSize=__size;}
+		void set_length(int __size){if(!isSet){this->__a=new type[__size+1];isSet=true;this->SSize=__size;}}
+		type operator[](const unsigned __at){return this->__a[__at];}
+		void set(type __at,type __value=0){this->__a[__at]=__value;}
+		type at(unsigned __at){return this->__a[__at];}
+		void reset_list(void){for(int __ii=0;__ii<=this->__SSize;__ii++)this->__a[__ii]=0;}
+};
+
+class str{
+	private:
+		string __inStr="";
+	public:
+		unsigned long long npos;
+		str(){this->npos=this->__inStr.npos;}
+		str(const string __give){this->__inStr=__give;this->npos=this->__inStr.npos;}
+		str(const string __give,const int __times){for(int __ii=0;__ii<__times;__ii++)for(int __jj=0;__jj<__give.size();__jj++)this->__inStr.push_back(__give[__jj]);}
+		void refresh_npos(void){this->npos=this->__inStr.npos;}
+		void set(const string __given){this->__inStr=__given;}
+		string get(void){return this->__inStr;}
+		size_t size(void){return this->__inStr.size();}
+		size_t length(void){return this->__inStr.length();}
+		void push_back(const char __c){this->__inStr.push_back(__c);}
+		char at(size_t __at){return this->__inStr.at(__at);}
+		string substrOf(size_t __spos=0,size_t __epos=0){return this->__inStr.substr(__spos,__epos-__spos+1);}
+		string substr(size_t __spos=0,size_t __len=1){return this->__inStr.substr(__spos,__len);}
+		string upper(void){string __temp;for(int __ii = 0;__ii < this->__inStr.size();__ii++){if(this->__inStr[__ii]<='z' && this->__inStr[__ii]>='a')	__temp.push_back(this->__inStr[__ii]-32);else	__temp.push_back(this->__inStr[__ii]);}return __temp;}
+		string smaller(void){string __temp;for(int __ii = 0;__ii < this->__inStr.size();__ii++){if(this->__inStr[__ii]<='Z' && this->__inStr[__ii]>='A')	__temp.push_back(this->__inStr[__ii]+32);else	__temp.push_back(this->__inStr[__ii]);}return __temp;}
+};
