@@ -1,3 +1,4 @@
+//不知道为什么，思路应该是对的，但是不知如何实现
 /*
 名称 波浪 
 
@@ -45,17 +46,6 @@ using namespace std;
 void copyy(long long *a,int addr){for(int i=0;i<addr;i++)  a[addr+i]=a[i];}
 bool cmp1(long long a,long long b){return a<b;}
 bool cmp2(long long a,long long b){return a>b;}
-void get_plus(long long size,long long tag,long long &plus){
-	for(int i=1;i<=size;i++){
-		if(abs(size*i-tag)<size){
-			if(cmp1(abs(size*i-tag),abs(size*i+size-tag))){
-				plus=abs(size*i-tag);
-			}else{
-				plus=abs(size*i+size-tag);
-			}
-		}
-	}
-}
 long long to_num(string a){
 	long long record_=0;
 	for(int i=0;i<a.size();i++) record_+=pow(10,a.size()-1-i)*(a[i]-'0');
@@ -100,9 +90,8 @@ int main(){
 		else  sort(a+s,a+s+i,cmp2);
 		s+=i,mod++;
 	}
-	get_plus(how_many,s,plus);
-	if(mod%2==1)  sort(a+s,a+s+plus,cmp1);
-	else  sort(a+s,a+s+plus,cmp2);
+	if(mod%2==1)  sort(a+s,a+s+3,cmp1);
+	else  sort(a+s,a+s+3,cmp2);
 	for(int i=0;i<s+3;i++){
 		cout<<a[i];
 		if(i!=s+2)  cout<<" ";
