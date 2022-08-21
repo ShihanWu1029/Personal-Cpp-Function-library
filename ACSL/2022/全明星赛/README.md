@@ -9,7 +9,7 @@
 反的方向重新排列。如果列表中的数字不能排列成完整的波浪，在
 其后面增加一列原有的数字，继续排列，直到形成长度为 1 的波浪。
 
-<img src="https://github.com/iNeverNobody/Personal-Cpp-Function-library/blob/b95906c420e016a2688b290d40c58695303d10f8/ACSL/2022/%E5%85%A8%E6%98%8E%E6%98%9F%E8%B5%9B/%E6%B3%A2%E6%B5%AA%EF%BC%88%E8%A7%A3%E9%87%8A%EF%BC%89.png">
+<img src="https://i.postimg.cc/k5qBNKrD/image.png">
 
 输入: 一个正整数 N（第一个波浪的长度）和一列整数，每个整数之
 间由一个空格分隔。数列中的整数最多有 100 个
