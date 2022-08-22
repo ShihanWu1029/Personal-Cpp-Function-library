@@ -10,35 +10,35 @@ using std::ios;
 using std::setprecision;
 const unsigned long long inf=0x7ffffffff;
 
-template<typename T>long double maxof(T __firstInput,T __secondInput){		//返回两数中的较大值 
+template<typename T>inline long double maxof(T __firstInput,T __secondInput){		//返回两数中的较大值 
 	return (__firstInput>__secondInput?__firstInput:__secondInput);
 }
-template<typename T>long double minof(T __firstInput,T __secondInput){		//返回两数中的较小值 
+template<typename T>inline long double minof(T __firstInput,T __secondInput){		//返回两数中的较小值 
 	return (__firstInput<__secondInput?__firstInput:__secondInput);
 }
-template<typename T>long double sumof(T N1,T N2){
+template<typename T>inline long double sumof(T N1,T N2){
 	return N1+N2;
 }
-template<typename T>void swapp(T &a,T &b){
+template<typename T>inline void swapp(T &a,T &b){
 	T temp=a;a=b;b=temp;
 }
-template<typename T>int  comparee(T a,T b){
+template<typename T>inline int  comparee(T a,T b){
 	return (a>b?1:(a==b?0:-1));
 }
-template<typename T>bool isEaqual(T a,T b){
+template<typename T>inline bool isEaqual(T a,T b){
 	return a==b;
 }
 
-bool isLetter(char c){
+inline bool isLetter(char c){
 	return (c>='a'&& c<='z' || c>='A' && c<='Z');
 }
-bool isLetterSmall(char c){
+inline bool isLetterSmall(char c){
 	return (c>='a' && c<='z');
 }
-bool isLetterBig(char c){
+inline bool isLetterBig(char c){
 	return (c>='A' && c<='Z');
 }
-bool isNumber(char c){
+inline bool isNumber(char c){
 	return (c>='0' && c<='9');
 }
 
@@ -54,14 +54,14 @@ template<class XType,class YType>class crdinate{			//用于构建坐标系
 		void set(XType __Give_X,YType __Give_Y){this->__Xpos=__Give_X;this->__Ypos=__Give_Y;}
 		void set_X(XType __Give_X){this->__Xpos=__Give_X;}
 		void set_Y(YType __Give_Y){this->__Ypos=__Give_Y;}
-		XType get_X(void){return this->__Xpos;}
-		YType get_Y(void){return this->__Ypos;}
+		inline XType get_X(void){return this->__Xpos;}
+		inline YType get_Y(void){return this->__Ypos;}
 		crdinate get(void){return *this;}
-		long double distance_between(crdinate __other){tmp_betw=sqrt((this->__Xpos-__other.__Xpos)*(this->__Xpos-__other.__Xpos)+(this->__Ypos-__other.__Ypos)*(this->__Ypos-__other.__Ypos));return tmp_betw;}
-		bool operator==(const crdinate __anthr){return (this->__Xpos==__anthr.__Xpos && this->__Ypos==__anthr.__Ypos);}
-		bool operator<=(const crdinate __anthr){return (this->__Xpos<=__anthr.__Xpos && this->__Ypos<=__anthr.__Ypos);}
-		bool operator>=(const crdinate __anthr){return (this->__Xpos>=__anthr.__Xpos && this->__Ypos>=__anthr.__Ypos);}
-		XType operator[](int __get){
+		inline long double distance_between(crdinate __other){tmp_betw=sqrt((this->__Xpos-__other.__Xpos)*(this->__Xpos-__other.__Xpos)+(this->__Ypos-__other.__Ypos)*(this->__Ypos-__other.__Ypos));return tmp_betw;}
+		inline bool operator==(const crdinate __anthr){return (this->__Xpos==__anthr.__Xpos && this->__Ypos==__anthr.__Ypos);}
+		inline bool operator<=(const crdinate __anthr){return (this->__Xpos<=__anthr.__Xpos && this->__Ypos<=__anthr.__Ypos);}
+		inline bool operator>=(const crdinate __anthr){return (this->__Xpos>=__anthr.__Xpos && this->__Ypos>=__anthr.__Ypos);}
+		inline XType operator[](int __get){
 			if(__get>2 || __get<0) return 0;
 			if(__get==0) return this->__Xpos;
 			else return this->__Ypos;
@@ -83,11 +83,11 @@ template<class XType,class YType>class crdinate{			//用于构建坐标系
  *}
  */
 unsigned long long __inCounterr=0;
-void counter_reset(void){__inCounterr=0;}	//重置计数器为0 
-void counter_startAt(unsigned long long __startAt){__inCounterr=__startAt;}		//设置计数器为输入的数 
-void counter_plus(void){__inCounterr++;}	//将计数器加一
-void counter_plus_step(int __step){__inCounterr+=__step;}	//将计数器加Step 
-unsigned long long get_counter(void){return __inCounterr;}	//获取计数器累加的值 
+inline void counter_reset(void){__inCounterr=0;}	//重置计数器为0 
+inline void counter_startAt(unsigned long long __startAt){__inCounterr=__startAt;}		//设置计数器为输入的数 
+inline void counter_plus(void){__inCounterr++;}	//将计数器加一
+inline void counter_plus_step(int __step){__inCounterr+=__step;}	//将计数器加Step 
+inline unsigned long long get_counter(void){return __inCounterr;}	//获取计数器累加的值 
 
 template<class type>class list{
 	private:
@@ -98,9 +98,9 @@ template<class type>class list{
 		list(){		}
 		list(int __size){this->__a=new type[__size+1];isSet=true;this->__SSize=__size;}
 		void set_length(int __size){if(!isSet){this->__a=new type[__size+1];isSet=true;this->SSize=__size;}}
-		type operator[](const unsigned __at){return this->__a[__at];}
-		void set(type __at,type __value=0){this->__a[__at]=__value;}
-		type at(unsigned __at){return this->__a[__at];}
+		inline type operator[](const unsigned __at){return this->__a[__at];}
+		inline void set(type __at,type __value=0){this->__a[__at]=__value;}
+		inline type at(unsigned __at){return this->__a[__at];}
 		void reset_list(void){for(int __ii=0;__ii<=this->__SSize;__ii++)this->__a[__ii]=0;}
 };
 
@@ -112,8 +112,8 @@ class str{
 		str(){this->npos=this->__inStr.npos;}
 		str(const string __give){this->__inStr=__give;this->npos=this->__inStr.npos;}
 		str(const string __give,const int __times){for(int __ii=0;__ii<__times;__ii++)for(int __jj=0;__jj<__give.size();__jj++)this->__inStr.push_back(__give[__jj]);}
-		void refresh_npos(void){this->npos=this->__inStr.npos;}
-		void set(const string __given){this->__inStr=__given;}
+		inline void refresh_npos(void){this->npos=this->__inStr.npos;}
+		inline void set(const string __given){this->__inStr=__given;}
 		string get(void){return this->__inStr;}
 		size_t size(void){return this->__inStr.size();}
 		size_t length(void){return this->__inStr.length();}
@@ -161,4 +161,4 @@ template<typename _T1,typename _T2>dictionary<_T1,_T2> make_dictionary(_T1 __nam
 	__res.make_word(__name,__data);
 	__res.make_word(__name1,__data1);
 	return __res;
-}//用于制造字典 
+}//用于制造字典
