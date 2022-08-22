@@ -1,6 +1,13 @@
 #include <cmath>
+#include <iostream>
+#include <iomanip>
 #include <string>
 using std::string;
+using std::cout;
+using std::cin;
+using std::fixed;
+using std::ios;
+using std::setprecision;
 const unsigned long long inf=0x7ffffffff;
 
 template<typename T>long double maxof(T __firstInput,T __secondInput){		//返回两数中的较大值 
@@ -116,4 +123,26 @@ class str{
 		string substr(size_t __spos=0,size_t __len=1){return this->__inStr.substr(__spos,__len);}
 		string upper(void){string __temp;for(int __ii = 0;__ii < this->__inStr.size();__ii++){if(this->__inStr[__ii]<='z' && this->__inStr[__ii]>='a')	__temp.push_back(this->__inStr[__ii]-32);else	__temp.push_back(this->__inStr[__ii]);}return __temp;}
 		string smaller(void){string __temp;for(int __ii = 0;__ii < this->__inStr.size();__ii++){if(this->__inStr[__ii]<='Z' && this->__inStr[__ii]>='A')	__temp.push_back(this->__inStr[__ii]+32);else	__temp.push_back(this->__inStr[__ii]);}return __temp;}
+};
+
+template<typename T>void print(const T __outputTarget,const char end='\n'){ios::sync_with_stdio(false);cout<<__outputTarget<<end;}
+template<typename T>bool input(T &__inputTarget){ios::sync_with_stdio(false);if(cin>>__inputTarget) return true;else return false;}
+template<typename T>void print_float(const T __outputTarget,const int __decimalplaces=2,const char end='\n'){ios::sync_with_stdio(false);cout<<fixed<<setprecision(__decimalplaces)<<__outputTarget<<end;}
+template<typename T>void print_fixed(const T __outputTarget,const char end='\n'){ios::sync_with_stdio(false);cout<<fixed<<setprecision(0)<<__outputTarget<<end;}
+
+template<class __type1,class __type2>class dictionary{
+	private:
+		__type1 *name;
+		__type2 *data;
+		string __noFounError_msg="[Error]In class dictionary: Can not find element with such name";
+		long long __searching_in_dictionary(__type1 __at){for(int i=0;i<size;i++)if(this->name[i]==__at) return i;return -1;}
+	public:
+		unsigned size=0;
+		unsigned MAX_SIZE=0;
+		dictionary(){this->name=new __type1[10000];this->data=new __type2[10000];MAX_SIZE=10000;}
+		dictionary(int __make_size){this->name=new __type1[__make_size];this->data=new __type2[__make_size];MAX_SIZE=__make_size;}
+		void make_word(__type1 __Name,__type2 __Data){this->name[size]=__Name;this->data[size++]=__Data;}
+		__type2 operator[](const __type1 __at){long long __res_of_searching=this->__searching_in_dictionary(__at);if(__res_of_searching==-1)  cout<<this->__noFounError_msg;else return this->data[__res_of_searching];}
+		__type2 at(const __type1 __at){return this->operator[](__at);}
+		__type2 at_subscript(const int __at){return this->data[__at];}
 };
