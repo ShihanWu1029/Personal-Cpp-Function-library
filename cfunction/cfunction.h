@@ -130,19 +130,35 @@ template<typename T>bool input(T &__inputTarget){ios::sync_with_stdio(false);if(
 template<typename T>void print_float(const T __outputTarget,const int __decimalplaces=2,const char end='\n'){ios::sync_with_stdio(false);cout<<fixed<<setprecision(__decimalplaces)<<__outputTarget<<end;}
 template<typename T>void print_fixed(const T __outputTarget,const char end='\n'){ios::sync_with_stdio(false);cout<<fixed<<setprecision(0)<<__outputTarget<<end;}
 
-template<class __type1,class __type2>class dictionary{
+typedef string error_msg;
+template<class __type1,class __type2>class dictionary{//字典 
 	private:
-		__type1 *name;
-		__type2 *data;
-		string __noFounError_msg="[Error]In class dictionary: Can not find element with such name";
-		long long __searching_in_dictionary(__type1 __at){for(int i=0;i<size;i++)if(this->name[i]==__at) return i;return -1;}
+		__type1 *name;//存储key
+		__type2 *data;//存储数据
+		const error_msg __noFounError_msg="[Error]In class dictionary: Can not find element with such name.\n";
+		const error_msg __overloadError_msg="[Error]In class dictionary: Try to push elements after size comes to the max_size.Overload.\n";
+		long long __searching_in_dictionary(__type1 __at){for(int i=0;i<size;i++)if(this->name[i]==__at) return i;return -1;}//用于在字典中查找__at并返回下标 (O(size))
 	public:
-		unsigned size=0;
-		unsigned MAX_SIZE=0;
-		dictionary(){this->name=new __type1[10000];this->data=new __type2[10000];MAX_SIZE=10000;}
-		dictionary(int __make_size){this->name=new __type1[__make_size];this->data=new __type2[__make_size];MAX_SIZE=__make_size;}
-		void make_word(__type1 __Name,__type2 __Data){this->name[size]=__Name;this->data[size++]=__Data;}
-		__type2 operator[](const __type1 __at){long long __res_of_searching=this->__searching_in_dictionary(__at);if(__res_of_searching==-1)  cout<<this->__noFounError_msg;else return this->data[__res_of_searching];}
-		__type2 at(const __type1 __at){return this->operator[](__at);}
-		__type2 at_subscript(const int __at){return this->data[__at];}
+		unsigned size=0;//存字典大小
+		unsigned MAX_SIZE=0;//存最大大小 
+		dictionary(){this->name=new __type1[10000];this->data=new __type2[10000];MAX_SIZE=10000;}//默认大小10000 
+		dictionary(int __make_size){this->name=new __type1[__make_size];this->data=new __type2[__make_size];MAX_SIZE=__make_size;}//构造 
+		void make_word(__type1 __Name,__type2 __Data){this->name[size]=__Name;this->data[size++]=__Data;}//添加成员 
+		void append_dictionary(dictionary __rec){int __lenof=__rec.size;for(int i=0;i<__lenof;i++){if(size>=MAX_SIZE-1){cout<<this->__overloadError_msg;return;}this->make_word(__rec.get_name(i),__rec.at_subscript(i));}}//用于在字典中添加另一字典类 
+		__type2 operator[](const __type1 __at){long long __res_of_searching=this->__searching_in_dictionary(__at);if(__res_of_searching==-1)  cout<<this->__noFounError_msg;else return this->data[__res_of_searching];}//重载下标运算符 
+		__type2 at(const __type1 __at){return this->operator[](__at);}//at函数 
+		__type2 at_subscript(const int __at){if(__at>=size){return __type2(0);}return this->data[__at];}//通过下标找元素 
+		__type1 get_name(const int __at){if(__at>=size){return __type1(0);}return this->name[__at];}//获取key 
+		long long finding(const __type1 __what){return this->__searching_in_dictionary(__what);}//找__what的下标 
 };
+template<typename _T1,typename _T2>dictionary<_T1,_T2> make_dictionary(_T1 __name,_T2 __data){
+	dictionary<_T1,_T2> __res(1);
+	__res.make_word(__name,__data);
+	return __res;
+}//用于制造字典 
+template<typename _T1,typename _T2>dictionary<_T1,_T2> make_dictionary(_T1 __name,_T2 __data,_T1 __name1,_T2 __data1){
+	dictionary<_T1,_T2> __res(2);
+	__res.make_word(__name,__data);
+	__res.make_word(__name1,__data1);
+	return __res;
+}//用于制造字典 
