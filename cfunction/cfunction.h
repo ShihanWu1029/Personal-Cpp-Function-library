@@ -162,3 +162,13 @@ template<typename _T1,typename _T2>dictionary<_T1,_T2> make_dictionary(_T1 __nam
 	__res.make_word(__name1,__data1);
 	return __res;
 }//用于制造字典
+
+class __this_is_an{
+	public:
+		int apple;
+		string banana="how_many";
+		bool hate_grapes=false;
+		char *sentence="one day one apple......";
+		long long to_future=1234567890987654321;
+		short last=32767;
+};
