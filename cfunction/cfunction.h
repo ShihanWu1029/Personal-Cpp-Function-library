@@ -8,6 +8,8 @@ using std::cin;
 using std::fixed;
 using std::ios;
 using std::setprecision;
+using std::istream;
+using std::ostream;
 const unsigned long long inf=0x7ffffffff;
 
 template<typename T>inline long double maxof(T __firstInput,T __secondInput){		//返回两数中的较大值 
@@ -144,31 +146,23 @@ template<class __type1,class __type2>class dictionary{//字典
 		dictionary(){this->name=new __type1[10000];this->data=new __type2[10000];MAX_SIZE=10000;}//默认大小10000 
 		dictionary(int __make_size){this->name=new __type1[__make_size];this->data=new __type2[__make_size];MAX_SIZE=__make_size;}//构造 
 		void make_word(__type1 __Name,__type2 __Data){this->name[size]=__Name;this->data[size++]=__Data;}//添加成员 
-		void append_dictionary(dictionary __rec){int __lenof=__rec.size;for(int i=0;i<__lenof;i++){if(size>=MAX_SIZE-1){cout<<this->__overloadError_msg;return;}this->make_word(__rec.get_name(i),__rec.at_subscript(i));}}//用于在字典中添加另一字典类 
+		void append_dictionary(dictionary __rec){int __lenof=__rec.size;for(int i=0;i<__lenof;i++){if(size>=MAX_SIZE){cout<<this->__overloadError_msg;return;}this->make_word(__rec.get_name(i),__rec.at_subscript(i));}}//用于在字典中添加另一字典类 
 		__type2 operator[](const __type1 __at){long long __res_of_searching=this->__searching_in_dictionary(__at);if(__res_of_searching==-1)  cout<<this->__noFounError_msg;else return this->data[__res_of_searching];}//重载下标运算符 
 		__type2 at(const __type1 __at){return this->operator[](__at);}//at函数 
 		__type2 at_subscript(const int __at){if(__at>=size){return __type2(0);}return this->data[__at];}//通过下标找元素 
-		__type1 get_name(const int __at){if(__at>=size){return __type1(0);}return this->name[__at];}//获取key 
-		long long finding(const __type1 __what){return this->__searching_in_dictionary(__what);}//找__what的下标 
+		__type1 get_name(const int __at){if(__at>=size){return __type1(0);}return this->name[__at];}//获取key
+		long long finding(const __type1 __what){return this->__searching_in_dictionary(__what);}//找__what的下标
+		ostream &print(ostream &os,const char end='\n'){os<<"{";for(int i=0;i<size;i++){os<<this->get_name(i)<<": "<<this->at_subscript(i);if(i!=size-1)  cout<<" , ";}os<<"}"<<end;}
+		istream &read(istream &is,const unsigned __tag_size,const bool __colon_input=false){int __tag=(__tag_size+size>MAX_SIZE?MAX_SIZE:__tag_size);char rec_colon;__type1 __rec1;__type2 __rec2;for(int i=size;i<__tag;i++){if(__colon_input) is>>__rec1>>rec_colon>>__rec2;else is>>__rec1>>__rec2;this->make_word(__rec1,__rec2);}}
 };
 template<typename _T1,typename _T2>dictionary<_T1,_T2> make_dictionary(_T1 __name,_T2 __data){
 	dictionary<_T1,_T2> __res(1);
 	__res.make_word(__name,__data);
 	return __res;
-}//用于制造字典 
+}//用于制造字典
 template<typename _T1,typename _T2>dictionary<_T1,_T2> make_dictionary(_T1 __name,_T2 __data,_T1 __name1,_T2 __data1){
 	dictionary<_T1,_T2> __res(2);
 	__res.make_word(__name,__data);
 	__res.make_word(__name1,__data1);
 	return __res;
 }//用于制造字典
-
-class __this_is_an{
-	public:
-		int apple;
-		string banana="how_many";
-		bool hate_grapes=false;
-		char *sentence="one day one apple......";
-		long long to_future=1234567890987654321;
-		short last=32767;
-};
