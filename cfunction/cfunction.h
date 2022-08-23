@@ -45,6 +45,12 @@ inline bool isNumber(char c){
 	return (c>='0' && c<='9');
 }
 
+unsigned long long to_num(string __tag){
+	unsigned long long __record=0;
+	for(int i=0;i<__tag.size();i++)  __record+=pow(10,__tag.size()-1-i)*(__tag[i]-'0');
+	return __record;
+}
+
 template<class XType,class YType>class crdinate{			//用于构建坐标系 
 	private:
 		XType __Xpos=0;				//用于存储X坐标，下为Y坐标 
@@ -178,7 +184,7 @@ struct math{
 	template<typename T>long double exp(T __x){return (long double)pow(e,__x);}
 //	template<typename T>long double abs(T __x){return abs(__x);}
 // 	改fabs
-    	template<typename T>long double Abs(T __x){return fabs(__x);} 
+    template<typename T>long double Abs(T __x){return fabs(__x);} 
 	template<typename T>long long   gcd(T __x,T __y){if(__y) while((__x%=__y) && (__y%=__x)); return __x+__y;}
 	template<typename T>long long floor(T __x){return int(__x);}
 	template<typename T>long long  ceil(T __x){if(int(__x)==__x) return __x;else return int(__x)+1;}
@@ -190,4 +196,11 @@ struct math{
 //	template<typename T>inline long double fabs(T __x) {return fabs(__x);}
 //	已将fabs作用于abs 
 	long double pow(int __base,int __get){long double record=1;for(int i=1;i<=__get;i++)record*=__base;return record;}
+	long double CmtoIn(float __Cm){return (long double)__Cm*0.3937;}
+//	将厘米转换英尺 
 };
+
+template<typename T>ostream &display_array(ostream &os,T *__arr,unsigned __sizeof,unsigned __startat=0,const char split=' ',const char end=' '){
+	ios::sync_with_stdio(false);
+	for(int i=0;i<__sizeof;i++)  os<<__arr[i]<<((i==__sizeof-1)?end:split);
+}
