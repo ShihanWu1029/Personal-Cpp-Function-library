@@ -10,6 +10,7 @@ using std::ios;
 using std::setprecision;
 using std::istream;
 using std::ostream;
+using std::__is_integer;
 const unsigned long long inf=0x7ffffffff;
 
 template<typename T>inline long double maxof(T __firstInput,T __secondInput){		//返回两数中的较大值 
@@ -127,10 +128,10 @@ class str{
 		string smaller(void){string __temp;for(int __ii = 0;__ii < this->__inStr.size();__ii++){if(this->__inStr[__ii]<='Z' && this->__inStr[__ii]>='A')	__temp.push_back(this->__inStr[__ii]+32);else	__temp.push_back(this->__inStr[__ii]);}return __temp;}
 };
 
-template<typename T>void print(const T __outputTarget,const char end='\n'){ios::sync_with_stdio(false);cout<<__outputTarget<<end;}
-template<typename T>bool input(T &__inputTarget){ios::sync_with_stdio(false);if(cin>>__inputTarget) return true;else return false;}
-template<typename T>void print_float(const T __outputTarget,const int __decimalplaces=2,const char end='\n'){ios::sync_with_stdio(false);cout<<fixed<<setprecision(__decimalplaces)<<__outputTarget<<end;}
-template<typename T>void print_fixed(const T __outputTarget,const char end='\n'){ios::sync_with_stdio(false);cout<<fixed<<setprecision(0)<<__outputTarget<<end;}
+template<typename T>void cprint(const T __outputTarget,const char end='\n'){ios::sync_with_stdio(false);cout<<__outputTarget<<end;}
+template<typename T>bool cinput(T &__inputTarget){ios::sync_with_stdio(false);if(cin>>__inputTarget) return true;else return false;}
+template<typename T>void cprint_float(const T __outputTarget,const int __decimalplaces=2,const char end='\n'){ios::sync_with_stdio(false);cout<<fixed<<setprecision(__decimalplaces)<<__outputTarget<<end;}
+template<typename T>void cprint_fixed(const T __outputTarget,const char end='\n'){ios::sync_with_stdio(false);cout<<fixed<<setprecision(0)<<__outputTarget<<end;}
 
 typedef string error_msg;
 template<class __type1,class __type2>class dictionary{//字典 
@@ -166,3 +167,27 @@ template<typename _T1,typename _T2>dictionary<_T1,_T2> make_dictionary(_T1 __nam
 	__res.make_word(__name1,__data1);
 	return __res;
 }//用于制造字典
+
+struct math{
+	const long double e=2.71828182845904523536;
+	const long double inf=1.7969e+308;
+	const long double nan=sqrt(-1.0);
+	const long double pi=3.1415926535897932384;
+	const long double tau=pi*2;
+	
+	template<typename T>long double exp(T __x){return (long double)pow(e,__x);}
+//	template<typename T>long double abs(T __x){return abs(__x);}
+// 	改fabs
+    	template<typename T>long double Abs(T __x){return fabs(__x);} 
+	template<typename T>long long   gcd(T __x,T __y){if(__y) while((__x%=__y) && (__y%=__x)); return __x+__y;}
+	template<typename T>long long floor(T __x){return int(__x);}
+	template<typename T>long long  ceil(T __x){if(int(__x)==__x) return __x;else return int(__x)+1;}
+	long double factorial(short __x){long double __count=1;for(int j=__x;j>0;j--)__count*=j;return __count;}
+//	template<typename T>long double sqrt(T __x){return sqrt(__x);}
+//	↑sqrt函数会卡死(Why??)
+ 	template<typename _Tp>inline _GLIBCXX_CONSTEXPR typename __gnu_cxx::__enable_if<__is_integer<_Tp>::__value, double>::__type Sqrt(_Tp __x)
+	{ return __builtin_sqrt(__x); }
+//	template<typename T>inline long double fabs(T __x) {return fabs(__x);}
+//	已将fabs作用于abs 
+	long double pow(int __base,int __get){long double record=1;for(int i=1;i<=__get;i++)record*=__base;return record;}
+};
