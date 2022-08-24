@@ -2,6 +2,7 @@
 #include <iostream>
 #include <iomanip>
 #include <string>
+#include <stack>
 using std::string;
 using std::cout;
 using std::cin;
@@ -11,6 +12,7 @@ using std::setprecision;
 using std::istream;
 using std::ostream;
 using std::__is_integer;
+using std::stack;
 const unsigned long long inf=0x7ffffffff;
 
 template<typename T>inline long double maxof(T __firstInput,T __secondInput){		//返回两数中的较大值 
@@ -197,10 +199,21 @@ struct math{
 //	已将fabs作用于abs 
 	long double pow(int __base,int __get){long double record=1;for(int i=1;i<=__get;i++)record*=__base;return record;}
 	long double CmtoIn(float __Cm){return (long double)__Cm*0.3937;}
-//	将厘米转换英尺 
+//	将厘米转换英尺
 };
 
 template<typename T>ostream &display_array(ostream &os,T *__arr,unsigned __sizeof,unsigned __startat=0,const char split=' ',const char end=' '){
 	ios::sync_with_stdio(false);
 	for(int i=0;i<__sizeof;i++)  os<<__arr[i]<<((i==__sizeof-1)?end:split);
 }
+
+template<class type>class Stack{
+	private:
+		stack<type> __stack;
+	public:
+		inline void push(type __data){this->__stack.push(__data);}
+		inline type pop(void){type __tmp=this->__stack.top();this->__stack.pop();return __tmp;}
+		inline type top(void){return this->__stack.top();}
+		inline bool empty(void){return this->__stack.empty;}
+		const size_t size=this->__stack.size();
+};
