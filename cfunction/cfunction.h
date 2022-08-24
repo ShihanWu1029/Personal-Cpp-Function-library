@@ -72,11 +72,7 @@ template<class XType,class YType>class crdinate{			//用于构建坐标系
 		inline bool operator==(const crdinate __anthr){return (this->__Xpos==__anthr.__Xpos && this->__Ypos==__anthr.__Ypos);}
 		inline bool operator<=(const crdinate __anthr){return (this->__Xpos<=__anthr.__Xpos && this->__Ypos<=__anthr.__Ypos);}
 		inline bool operator>=(const crdinate __anthr){return (this->__Xpos>=__anthr.__Xpos && this->__Ypos>=__anthr.__Ypos);}
-		inline XType operator[](int __get){
-			if(__get>2 || __get<0) return 0;
-			if(__get==0) return this->__Xpos;
-			else return this->__Ypos;
-		}
+		inline XType operator[](int __get){if(__get>2 || __get<0) return 0;if(__get==0) return this->__Xpos;else return this->__Ypos;}
 };
 
 /*typedef int integer;
@@ -93,12 +89,17 @@ template<class XType,class YType>class crdinate{			//用于构建坐标系
  *    __inCounterr=__setting;
  *}
  */
-unsigned long long __inCounterr=0;
-inline void counter_reset(void){__inCounterr=0;}	//重置计数器为0 
-inline void counter_startAt(unsigned long long __startAt){__inCounterr=__startAt;}		//设置计数器为输入的数 
-inline void counter_plus(void){__inCounterr++;}	//将计数器加一
-inline void counter_plus_step(int __step){__inCounterr+=__step;}	//将计数器加Step 
-inline unsigned long long get_counter(void){return __inCounterr;}	//获取计数器累加的值 
+template<class type>class counter{
+	private:
+		type __inCounterr;
+	public:
+		counter(){this->__inCounterr=0;}
+		inline void counter_reset(void){this->__inCounterr=0;}	//重置计数器为0 
+		inline void counter_startAt(unsigned long long __startAt){this->__inCounterr=__startAt;}		//设置计数器为输入的数 
+		inline void counter_plus(void){this->__inCounterr++;}	//将计数器加一
+		inline void counter_plus_step(int __step){this->__inCounterr+=__step;}	//将计数器加Step 
+		inline unsigned long long get_counter(void){return this->__inCounterr;}	//获取计数器累加的值
+};
 
 template<class type>class list{
 	private:
@@ -113,6 +114,7 @@ template<class type>class list{
 		inline void set(type __at,type __value=0){this->__a[__at]=__value;}
 		inline type at(unsigned __at){return this->__a[__at];}
 		void reset_list(void){for(int __ii=0;__ii<=this->__SSize;__ii++)this->__a[__ii]=0;}
+		void clear(void){delete this->__a;delete this;}
 };
 
 class str{
@@ -163,6 +165,7 @@ template<class __type1,class __type2>class dictionary{//字典
 		long long finding(const __type1 __what){return this->__searching_in_dictionary(__what);}//找__what的下标
 		ostream &print(ostream &os,const char end='\n'){os<<"{";for(int i=0;i<size;i++){os<<this->get_name(i)<<": "<<this->at_subscript(i);if(i!=size-1)  cout<<" , ";}os<<"}"<<end;}
 		istream &read(istream &is,const unsigned __tag_size,const bool __colon_input=false){int __tag=(__tag_size+size>MAX_SIZE?MAX_SIZE:__tag_size);char rec_colon;__type1 __rec1;__type2 __rec2;for(int i=size;i<__tag;i++){if(__colon_input) is>>__rec1>>rec_colon>>__rec2;else is>>__rec1>>__rec2;this->make_word(__rec1,__rec2);}}
+		void clear(void){delete this->name;delete this->data;delete this;}
 };
 template<typename _T1,typename _T2>dictionary<_T1,_T2> make_dictionary(_T1 __name,_T2 __data){
 	dictionary<_T1,_T2> __res(1);
@@ -186,7 +189,7 @@ struct math{
 	template<typename T>long double exp(T __x){return (long double)pow(e,__x);}
 //	template<typename T>long double abs(T __x){return abs(__x);}
 // 	改fabs
-    template<typename T>long double Abs(T __x){return fabs(__x);} 
+	template<typename T>long double Abs(T __x){return fabs(__x);} 
 	template<typename T>long long   gcd(T __x,T __y){if(__y) while((__x%=__y) && (__y%=__x)); return __x+__y;}
 	template<typename T>long long floor(T __x){return int(__x);}
 	template<typename T>long long  ceil(T __x){if(int(__x)==__x) return __x;else return int(__x)+1;}
