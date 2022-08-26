@@ -3,6 +3,7 @@
 #include <iomanip>
 #include <string>
 #include <stack>
+#include <queue>
 using std::string;
 using std::cout;
 using std::cin;
@@ -13,6 +14,7 @@ using std::istream;
 using std::ostream;
 using std::__is_integer;
 using std::stack;
+using std::queue;
 const unsigned long long inf=0x7ffffffff;
 
 template<typename T>inline long double maxof(T __firstInput,T __secondInput){		//返回两数中的较大值 
@@ -89,9 +91,9 @@ template<class XType,class YType>class crdinate{			//用于构建坐标系
  *    __inCounterr=__setting;
  *}
  */
-template<class type>class counter{
+class counter{
 	private:
-		type __inCounterr;
+		unsigned long long __inCounterr;
 	public:
 		counter(){this->__inCounterr=0;}
 		inline void counter_reset(void){this->__inCounterr=0;}	//重置计数器为0 
@@ -220,3 +222,15 @@ template<class type>class Stack{
 		inline bool empty(void){return this->__stack.empty;}
 		const size_t size=this->__stack.size();
 };
+
+template<class type>class Queue{
+	private:
+		queue<type> __queue;
+	public:
+		inline void push(type __data){this->__queue.push(__data);}
+		inline type pop(){type tmp=this->__queue.front();this->__queue.pop();return tmp;}
+		inline type front(){return this->__queue.front();}
+		inline bool empty(){return this->__queue.empty();}
+		inline size_t size(){return this->__queue.size();}
+		inline type back(){return this->__queue.back();}
+}; 
