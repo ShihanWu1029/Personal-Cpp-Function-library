@@ -17,6 +17,7 @@ using std::stack;
 using std::queue;
 const unsigned long long inf=0x7ffffffff;
 
+namespace std{
 template<typename T>inline long double maxof(T __firstInput,T __secondInput){		//返回两数中的较大值 
 	return (__firstInput>__secondInput?__firstInput:__secondInput);
 }
@@ -144,6 +145,11 @@ template<typename T>void cprint(const T __outputTarget,const char end='\n'){ios:
 template<typename T>bool cinput(T &__inputTarget){ios::sync_with_stdio(false);if(cin>>__inputTarget) return true;else return false;}
 template<typename T>void cprint_float(const T __outputTarget,const int __decimalplaces=2,const char end='\n'){ios::sync_with_stdio(false);cout<<fixed<<setprecision(__decimalplaces)<<__outputTarget<<end;}
 template<typename T>void cprint_fixed(const T __outputTarget,const char end='\n'){ios::sync_with_stdio(false);cout<<fixed<<setprecision(0)<<__outputTarget<<end;}
+long long input_int(void){long long __tempi;ios::sync_with_stdio(false);cin>>__tempi;return __tempi;}
+char input_char(void){char __tempc;ios::sync_with_stdio(false);cin>>__tempc;return __tempc;}
+long double input_double(void){long double __tempd;ios::sync_with_stdio(false);cin>>__tempd;return __tempd;} 
+string input_str(bool __isGetline=false){string __temps;__isGetline?(getline(cin,__temps)):(cin>>__temps);return __temps;}
+
 
 typedef string error_msg;
 template<class __type1,class __type2>class dictionary{//字典 
@@ -233,4 +239,5 @@ template<class type>class Queue{
 		inline bool empty(){return this->__queue.empty();}
 		inline size_t size(){return this->__queue.size();}
 		inline type back(){return this->__queue.back();}
-}; 
+};
+}
