@@ -15,46 +15,30 @@ using std::ostream;
 using std::__is_integer;
 using std::stack;
 using std::queue;
-const unsigned long long inf=0x7ffffffff;
 
 namespace std{
-template<typename T>inline long double maxof(T __firstInput,T __secondInput){		//返回两数中的较大值 
-	return (__firstInput>__secondInput?__firstInput:__secondInput);
-}
-template<typename T>inline long double minof(T __firstInput,T __secondInput){		//返回两数中的较小值 
-	return (__firstInput<__secondInput?__firstInput:__secondInput);
-}
-template<typename T>inline long double sumof(T N1,T N2){
-	return N1+N2;
-}
-template<typename T>inline void swapp(T &a,T &b){
-	T temp=a;a=b;b=temp;
-}
-template<typename T>inline int  comparee(T a,T b){
-	return (a>b?1:(a==b?0:-1));
-}
-template<typename T>inline bool isEaqual(T a,T b){
-	return a==b;
-}
-
-inline bool isLetter(char c){
-	return (c>='a'&& c<='z' || c>='A' && c<='Z');
-}
-inline bool isLetterSmall(char c){
-	return (c>='a' && c<='z');
-}
-inline bool isLetterBig(char c){
-	return (c>='A' && c<='Z');
-}
-inline bool isNumber(char c){
-	return (c>='0' && c<='9');
-}
-
-unsigned long long to_num(string __tag){
-	unsigned long long __record=0;
-	for(int i=0;i<__tag.size();i++)  __record+=pow(10,__tag.size()-1-i)*(__tag[i]-'0');
-	return __record;
-}
+/*
+ *std命名空间 
+ *
+ *常数部分： 
+ */
+const unsigned int BIGGEST_INT=0x7fffffff;
+/*
+ *常用函数： 
+ */ 
+template<typename T>inline long double maxof(T __firstInput,T __secondInput){return (__firstInput>__secondInput?__firstInput:__secondInput);}/*返回最大值*/
+template<typename T>inline long double minof(T __firstInput,T __secondInput){return (__firstInput<__secondInput?__firstInput:__secondInput);}/*返回最小值*/
+template<typename T>inline long double sumof(T N1,T N2){return N1+N2;}/*返回两数之和*/
+template<typename T>inline void Swap(T &a,T &b){T temp=a;a=b;b=temp;}/*交换两变量的值*/
+template<typename T>inline int  Compare(T a,T b){return (a>b?1:(a==b?0:-1));}/*比较大小（大于返回1，等于返回0，小于返回-1）*/
+template<typename T>inline bool isEaqual(T a,T b){return a==b;}/*返回两变量是否相等*/
+inline bool isLetter(char c){return (c>='a'&& c<='z' || c>='A' && c<='Z');}/*返回是否是字母*/
+inline bool isLetterSmall(char c){return (c>='a' && c<='z');}/*返回是否是小写字母*/
+inline bool isLetterBig(char c){return (c>='A' && c<='Z');}/*返回是否是大写字母*/
+inline bool isNumber(char c){return (c>='0' && c<='9');}/*返回是否是数字*/
+unsigned long long to_num(string __tag){unsigned long long __record=0;for(int i=0;i<__tag.size();i++)  __record+=pow(10,__tag.size()-1-i)*(__tag[i]-'0');return __record;}
+/*将字符串转换为数字（↑无符号超长整型）（↓高精度）*/
+unsigned* to_num_huge(string __tag){unsigned *__record=new unsigned[__tag.size()];for(int  i=0;i<__tag.size();i++)  __record[__tag.size()-i-1]=__tag[__tag.size()-i-1]-'0';return __record;}
 
 template<class XType,class YType>class crdinate{			//用于构建坐标系 
 	private:
@@ -139,6 +123,8 @@ class str{
 		string substr(size_t __spos=0,size_t __len=1){return this->__inStr.substr(__spos,__len);}
 		string upper(void){string __temp;for(int __ii = 0;__ii < this->__inStr.size();__ii++){if(this->__inStr[__ii]<='z' && this->__inStr[__ii]>='a')	__temp.push_back(this->__inStr[__ii]-32);else	__temp.push_back(this->__inStr[__ii]);}return __temp;}
 		string smaller(void){string __temp;for(int __ii = 0;__ii < this->__inStr.size();__ii++){if(this->__inStr[__ii]<='Z' && this->__inStr[__ii]>='A')	__temp.push_back(this->__inStr[__ii]+32);else	__temp.push_back(this->__inStr[__ii]);}return __temp;}
+		char* c_type(void){char* __record=new char[this->__inStr.size()];for(int i=0;i<this->__inStr.size();i++)__record[i]=this->__inStr[i];return __record;}
+		void clear(void){this->__inStr.clear();delete this;}
 };
 
 template<typename T>void cprint(const T __outputTarget,const char end='\n'){ios::sync_with_stdio(false);cout<<__outputTarget<<end;}
@@ -239,5 +225,5 @@ template<class type>class Queue{
 		inline bool empty(){return this->__queue.empty();}
 		inline size_t size(){return this->__queue.size();}
 		inline type back(){return this->__queue.back();}
-};
+}; 
 }
