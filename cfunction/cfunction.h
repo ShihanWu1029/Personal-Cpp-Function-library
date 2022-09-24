@@ -26,21 +26,21 @@ const unsigned int BIGGEST_INT=0x7fffffff;
 /*
  *常用函数： 
  */ 
-template<typename T>inline long double maxof(T __firstInput,T __secondInput){return (__firstInput>__secondInput?__firstInput:__secondInput);}/*返回最大值*/
-template<typename T>inline long double minof(T __firstInput,T __secondInput){return (__firstInput<__secondInput?__firstInput:__secondInput);}/*返回最小值*/
-template<typename T>inline long double sumof(T N1,T N2){return N1+N2;}/*返回两数之和*/
-template<typename T>inline void Swap(T &a,T &b){T temp=a;a=b;b=temp;}/*交换两变量的值*/
-template<typename T>inline int  Compare(T a,T b){return (a>b?1:(a==b?0:-1));}/*比较大小（大于返回1，等于返回0，小于返回-1）*/
-template<typename T>inline bool isEaqual(T a,T b){return a==b;}/*返回两变量是否相等*/
-inline bool isLetter(char c){return (c>='a'&& c<='z' || c>='A' && c<='Z');}/*返回是否是字母*/
-inline bool isLetterSmall(char c){return (c>='a' && c<='z');}/*返回是否是小写字母*/
-inline bool isLetterBig(char c){return (c>='A' && c<='Z');}/*返回是否是大写字母*/
-inline bool isNumber(char c){return (c>='0' && c<='9');}/*返回是否是数字*/
-unsigned long long to_num(string __tag){unsigned long long __record=0;for(int i=0;i<__tag.size();i++)  __record+=pow(10,__tag.size()-1-i)*(__tag[i]-'0');return __record;}
+template<typename T>inline long double c_maxof(T __firstInput,T __secondInput){return (__firstInput>__secondInput?__firstInput:__secondInput);}/*返回最大值*/
+template<typename T>inline long double c_minof(T __firstInput,T __secondInput){return (__firstInput<__secondInput?__firstInput:__secondInput);}/*返回最小值*/
+template<typename T>inline long double c_sumof(T N1,T N2){return N1+N2;}/*返回两数之和*/
+template<typename T>inline void c_swap(T &a,T &b){T temp=a;a=b;b=temp;}/*交换两变量的值*/
+template<typename T>inline int  c_compare(T a,T b){return (a>b?1:(a==b?0:-1));}/*比较大小（大于返回1，等于返回0，小于返回-1）*/
+template<typename T>inline bool c_isEaqual(T a,T b){return a==b;}/*返回两变量是否相等*/
+inline bool c_isLetter(char c){return (c>='a'&& c<='z' || c>='A' && c<='Z');}/*返回是否是字母*/
+inline bool c_isLetterSmall(char c){return (c>='a' && c<='z');}/*返回是否是小写字母*/
+inline bool c_isLetterBig(char c){return (c>='A' && c<='Z');}/*返回是否是大写字母*/
+inline bool c_isNumber(char c){return (c>='0' && c<='9');}/*返回是否是数字*/
+unsigned long long c_to_num(string __tag){unsigned long long __record=0;for(int i=0;i<__tag.size();i++)  __record+=pow(10,__tag.size()-1-i)*(__tag[i]-'0');return __record;}
 /*将字符串转换为数字（↑无符号超长整型）（↓高精度）*/
-unsigned* to_num_huge(string __tag){unsigned *__record=new unsigned[__tag.size()];for(int  i=0;i<__tag.size();i++)  __record[__tag.size()-i-1]=__tag[__tag.size()-i-1]-'0';return __record;}
+unsigned* c_to_num_huge(string __tag){unsigned *__record=new unsigned[__tag.size()];for(int  i=0;i<__tag.size();i++)  __record[__tag.size()-i-1]=__tag[__tag.size()-i-1]-'0';return __record;}
 
-template<class XType,class YType>class crdinate{			//用于构建坐标系 
+template<class XType,class YType>class c_crdinate{			//用于构建坐标系 
 	private:
 		XType __Xpos=0;				//用于存储X坐标，下为Y坐标 
 		YType __Ypos=0;
@@ -76,7 +76,7 @@ template<class XType,class YType>class crdinate{			//用于构建坐标系
  *    __inCounterr=__setting;
  *}
  */
-class counter{
+class c_counter{
 	private:
 		unsigned long long __inCounterr;
 	public:
@@ -88,7 +88,7 @@ class counter{
 		inline unsigned long long get_counter(void){return this->__inCounterr;}	//获取计数器累加的值
 };
 
-template<class type>class list{
+template<class type>class c_list{
 	private:
 		type *__a;
 		unsigned __SSize=0;
@@ -127,10 +127,10 @@ class str{
 		void clear(void){this->__inStr.clear();delete this;}
 };
 
-template<typename T>void cprint(const T __outputTarget,const char end='\n'){ios::sync_with_stdio(false);cout<<__outputTarget<<end;}
-template<typename T>bool cinput(T &__inputTarget){ios::sync_with_stdio(false);if(cin>>__inputTarget) return true;else return false;}
-template<typename T>void cprint_float(const T __outputTarget,const int __decimalplaces=2,const char end='\n'){ios::sync_with_stdio(false);cout<<fixed<<setprecision(__decimalplaces)<<__outputTarget<<end;}
-template<typename T>void cprint_fixed(const T __outputTarget,const char end='\n'){ios::sync_with_stdio(false);cout<<fixed<<setprecision(0)<<__outputTarget<<end;}
+template<typename T>void c_print(const T __outputTarget,const char end='\n'){ios::sync_with_stdio(false);cout<<__outputTarget<<end;}
+template<typename T>bool c_input(T &__inputTarget){ios::sync_with_stdio(false);if(cin>>__inputTarget) return true;else return false;}
+template<typename T>void c_print_float(const T __outputTarget,const int __decimalplaces=2,const char end='\n'){ios::sync_with_stdio(false);cout<<fixed<<setprecision(__decimalplaces)<<__outputTarget<<end;}
+template<typename T>void c_print_fixed(const T __outputTarget,const char end='\n'){ios::sync_with_stdio(false);cout<<fixed<<setprecision(0)<<__outputTarget<<end;}
 long long input_int(void){long long __tempi;ios::sync_with_stdio(false);cin>>__tempi;return __tempi;}
 char input_char(void){char __tempc;ios::sync_with_stdio(false);cin>>__tempc;return __tempc;}
 long double input_double(void){long double __tempd;ios::sync_with_stdio(false);cin>>__tempd;return __tempd;} 
@@ -138,7 +138,7 @@ string input_str(bool __isGetline=false){string __temps;__isGetline?(getline(cin
 
 
 typedef string error_msg;
-template<class __type1,class __type2>class dictionary{//字典 
+template<class __type1,class __type2>class c_dictionary{//字典 
 	private:
 		__type1 *name;//存储key
 		__type2 *data;//存储数据
@@ -173,7 +173,7 @@ template<typename _T1,typename _T2>dictionary<_T1,_T2> make_dictionary(_T1 __nam
 	return __res;
 }//用于制造字典
 
-struct math{
+struct c_math{
 	const long double e=2.71828182845904523536;
 	const long double inf=1.7969e+308;
 	const long double nan=sqrt(-1.0);
@@ -202,9 +202,10 @@ struct math{
 template<typename T>ostream &display_array(ostream &os,T *__arr,unsigned __sizeof,unsigned __startat=0,const char split=' ',const char end=' '){
 	ios::sync_with_stdio(false);
 	for(int i=0;i<__sizeof;i++)  os<<__arr[i]<<((i==__sizeof-1)?end:split);
+	return os;
 }
 
-template<class type>class Stack{
+template<class type>class re_Stack{
 	private:
 		stack<type> __stack;
 	public:
@@ -214,8 +215,7 @@ template<class type>class Stack{
 		inline bool empty(void){return this->__stack.empty;}
 		const size_t size=this->__stack.size();
 };
-
-template<class type>class Queue{
+template<class type>class re_Queue{
 	private:
 		queue<type> __queue;
 	public:
@@ -225,5 +225,5 @@ template<class type>class Queue{
 		inline bool empty(){return this->__queue.empty();}
 		inline size_t size(){return this->__queue.size();}
 		inline type back(){return this->__queue.back();}
-}; 
+};
 }
