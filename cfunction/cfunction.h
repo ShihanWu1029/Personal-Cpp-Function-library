@@ -109,9 +109,9 @@ class str{
 		string __inStr="";
 	public:
 		unsigned long long npos;
-		c_str(){this->npos=this->__inStr.npos;}
-		c_str(const string __give){this->__inStr=__give;this->npos=this->__inStr.npos;}
-		c_str(const string __give,const int __times){for(int __ii=0;__ii<__times;__ii++)for(int __jj=0;__jj<__give.size();__jj++)this->__inStr.push_back(__give[__jj]);}
+		str(){this->npos=this->__inStr.npos;}
+		str(const string __give){this->__inStr=__give;this->npos=this->__inStr.npos;}
+		str(const string __give,const int __times){for(int __ii=0;__ii<__times;__ii++)for(int __jj=0;__jj<__give.size();__jj++)this->__inStr.push_back(__give[__jj]);}
 		inline void refresh_npos(void){this->npos=this->__inStr.npos;}
 		inline void set(const string __given){this->__inStr=__given;}
 		string get(void){return this->__inStr;}
@@ -204,7 +204,6 @@ template<typename T>ostream &display_array(ostream &os,T *__arr,unsigned __sizeo
 	for(int i=0;i<__sizeof;i++)  os<<__arr[i]<<((i==__sizeof-1)?end:split);
 	return os;
 }
-
 template<class type>class re_Stack{
 	private:
 		stack<type> __stack;
