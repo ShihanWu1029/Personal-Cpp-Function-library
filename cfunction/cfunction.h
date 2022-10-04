@@ -1,9 +1,11 @@
+/**cfunction.hpp**/
 #include <cmath>
 #include <iostream>
 #include <iomanip>
 #include <string>
 #include <stack>
 #include <queue>
+/*import std class*/
 using std::string;
 using std::cout;
 using std::cin;
@@ -157,8 +159,8 @@ template<class __type1,class __type2>class c_dictionary{//字典
 		__type2 at_subscript(const int __at){if(__at>=size){return __type2(0);}return this->data[__at];}//通过下标找元素 
 		__type1 get_name(const int __at){if(__at>=size){return __type1(0);}return this->name[__at];}//获取key
 		long long finding(const __type1 __what){return this->__searching_in_dictionary(__what);}//找__what的下标
-		ostream &print(ostream &os,const char end='\n'){os<<"{";for(int i=0;i<size;i++){os<<this->get_name(i)<<": "<<this->at_subscript(i);if(i!=size-1)  cout<<" , ";}os<<"}"<<end;}
-		istream &read(istream &is,const unsigned __tag_size,const bool __colon_input=false){int __tag=(__tag_size+size>MAX_SIZE?MAX_SIZE:__tag_size);char rec_colon;__type1 __rec1;__type2 __rec2;for(int i=size;i<__tag;i++){if(__colon_input) is>>__rec1>>rec_colon>>__rec2;else is>>__rec1>>__rec2;this->make_word(__rec1,__rec2);}}
+		ostream &print(ostream &os,const char end='\n'){os<<"{";for(int i=0;i<size;i++){os<<this->get_name(i)<<": "<<this->at_subscript(i);if(i!=size-1)  cout<<" , ";}os<<"}"<<end; return os;}
+		istream &read(istream &is,const unsigned __tag_size,const bool __colon_input=false){int __tag=(__tag_size+size>MAX_SIZE?MAX_SIZE:__tag_size);char rec_colon;__type1 __rec1;__type2 __rec2;for(int i=size;i<__tag;i++){if(__colon_input) is>>__rec1>>rec_colon>>__rec2;else is>>__rec1>>__rec2;this->make_word(__rec1,__rec2);} return is;}
 		void clear(void){delete this->name;delete this->data;delete this;}
 };
 template<typename _T1,typename _T2>c_dictionary<_T1,_T2> make_dictionary(_T1 __name,_T2 __data){
@@ -226,3 +228,13 @@ template<class type>class re_Queue{
 		inline type back(){return this->__queue.back();}
 };
 }
+
+#ifdef _WIN32
+#include <windows.h>
+namespace win{
+void wait(int second){Sleep(second*1000);}
+void wait_ms(int millon_second){Sleep(millon_second);}
+void clear(){system("cls");}
+void pause(){system("pause");}
+}
+#endif
