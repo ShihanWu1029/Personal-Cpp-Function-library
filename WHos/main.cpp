@@ -69,9 +69,6 @@ class cmd{
 		operator ()(void){
 			return system(bases.c_str());
 		}
-		istream &readd(){
-			return (cin>>this->bases);
-		}
 };
 
 
@@ -115,8 +112,12 @@ int login(void){
 	if(cnt>=10) return -1;
 	print("Login successfully!\nWelcome ");
 	print(*usn);
-	print("."); 
+	print(".\n"); 
 	return ((*usn)=="admin"?0:1);
+}
+
+bool startWith(string a,string tag){
+	
 }
 cmd main_cmd;
 bool isAdmin=false;
@@ -126,18 +127,30 @@ int main(){
 		get=login();
 	}catch(error_t error){
 		cerr<<error.what()<<endl;
+		Sleep(3000);
 		return 0;
 	}
 	if(get==-1){
-		print("\nToo more time to try!The system will exit in 3second!Bye.");
+		print("Too more time to try!The system will exit in 3second!Bye.\n");
 		Sleep(3000); 
 		return 0;
 	}else{
 		isAdmin=(get==0?true:false);
+		cin.ignore();
 //		cout<<boolalpha<<isAdmin<<noboolalpha;
 		while(true){
 			//main code here!
-			
+			try{
+				print("C: > ");
+				string what;
+				getline(cin,what);
+				if()
+				main_cmd(what);
+			}catch(error_t error){
+				cerr<<error.what()<<endl;
+				Sleep(3000);
+				return 0;
+			}
 		}
 	}
 	
