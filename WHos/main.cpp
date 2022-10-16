@@ -115,10 +115,6 @@ int login(void){
 	print(".\n"); 
 	return ((*usn)=="admin"?0:1);
 }
-
-bool startWith(string a,string tag){
-	
-}
 cmd main_cmd;
 bool isAdmin=false;
 int main(){
@@ -144,7 +140,7 @@ int main(){
 				print("C: > ");
 				string what;
 				getline(cin,what);
-				if()
+				if(what.find("exit") != what.npos) return 0;
 				main_cmd(what);
 			}catch(error_t error){
 				cerr<<error.what()<<endl;
