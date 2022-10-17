@@ -55,19 +55,28 @@ ostream &print(const string text,ostream &istrm=cout){
 //	cout<<endl;
 } 
 
-
-
 class cmd{
 	private:
-		stack<string> rec_cmd;
+		void noSpace(string &tag){
+			for(int i=0;i<tag.size();i++){
+				if(tag[i]==' ') tag.erase(i,1);
+				else break;
+			}
+ 		}
+ 		vector<string> check_canshu(string th){
+ 			int cnt=0,cnt2=0,cntpos=0;
+		 	for(int i=0;i<th.size();i++){
+ 				if(th[i]==' ') cnt++;
+ 				if(cnt>=1){
+ 					if(cnt2==0)//wait to finish
+				 }
+			}
+		}
 	public:
-		string bases;
 		cmd(void) = default;
 		operator ()(const string __what){
-			return system(__what.c_str());
-		}
-		operator ()(void){
-			return system(bases.c_str());
+			noSpace(__what);
+			
 		}
 };
 
@@ -118,6 +127,8 @@ int login(void){
 cmd main_cmd;
 bool isAdmin=false;
 int main(){
+	system("color 0A");
+	system("title WHos");
 	int get;
 	try{
 		get=login();
