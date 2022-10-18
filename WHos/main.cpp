@@ -3,6 +3,7 @@
 #pragma 
 
 #include <iostream>
+#include <cstdio>
 
 #ifdef _WIN32
 #include <windows.h>
@@ -28,11 +29,11 @@ class error_t{
 };
 
 
-template <typename type1 , typename type2> class user{
+template <typename type1 , typename type2> class listed{
 	private: vector<pair<type1,type2>> __vp;
 	public:
-		user(void) = default;
-		user(const initializer_list<pair<type1,type2>> give){
+		listed(void) = default;
+		listed(const initializer_list<pair<type1,type2>> give){
 			for(auto item : give)  __vp.push_back(item); 
 		}
 		bool check(const type1 usn,const type2 psw){
@@ -63,28 +64,45 @@ class cmd{
 				else break;
 			}
  		}
- 		vector<string> check_canshu(string th){
+ 		vector<string> get_canshu(string th){
  			int cnt=0,cnt2=0,cntpos=0;
-		 	for(int i=0;i<th.size();i++){
- 				if(th[i]==' ') cnt++;
- 				if(cnt>=1){
- 					if(cnt2==0)//wait to finish
-				 }
+		 	bool flag=false;
+			vector<string> ret;
+			//BUG DOWN HERE!!!!!
+			for(int i=0;i<th.size();i++){
+				if(flag && th[i]!=' '){
+					flag=false;
+					cntpos=i;
+				}
+				if(!flag && th[i]!=' '){
+					cnt++;
+				}
+				if(th[i]==' ' && !flag){
+					flag=true;
+					ret.push_back(th.substr(cntpos,cnt));//SomeBug Here
+					cout<<(ret.back())<<endl;
+					cnt=0;
+				}
 			}
+			return ret;
 		}
 	public:
 		cmd(void) = default;
-		operator ()(const string __what){
-			noSpace(__what);
-			
+		operator ()(string __what){
+			for(int i=0;i<__what.size();i++){
+				if(__what[i]==' ') __what.erase(i,1);
+				else break;
+			}
+			/*vector<string> canshu=*/get_canshu(__what);
+//			string command=get_command(__what);
 		}
 };
 
 
-
+//login function
 int login(void){
 	ios::sync_with_stdio(false);
-	user<string,string> user_list={
+	listed<string,string> user_list={
 		{"admin","administrator",},
 		{"guest","123456"}
 	};
@@ -93,8 +111,8 @@ int login(void){
 	print("You haven't login.\n");
 	print("Please login if you want to use WHos!\n");
 	print("============\n");
-	string *usn=new string();
-	string *psw=new string();
+	string *usn=new string();//record username
+	string *psw=new string();//record password
 	int cnt=0;
 	while(cnt<=10){
 		print("Username: >");
