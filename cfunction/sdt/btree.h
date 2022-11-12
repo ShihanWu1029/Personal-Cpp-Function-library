@@ -7,11 +7,12 @@
  *  @file btree.h
  *  This is a headfile of binary tree.
  *  @author iNeverNobody
- *  @version beta
+ *  @version v1.0
  *  @copyright GNU Public License V3.0
  *  @date 2022/10/29
 **/
-//!> Next is the class of binary tree.
+namespace std{
+// Next is the class of binary tree.
 template<typename __Ty>
 struct BinaryTree{
     public:
