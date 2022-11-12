@@ -23,3 +23,4 @@ struct BinaryTree{
         BinaryTreeChild_Type Left_Child,Right_Child;
         Data_Type value;
 };
+}
