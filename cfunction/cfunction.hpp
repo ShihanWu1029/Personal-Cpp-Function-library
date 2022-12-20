@@ -6,17 +6,18 @@
 #include <stack>
 #include <queue>
 /*import std class*/
-using std::string;
-using std::cout;
-using std::cin;
-using std::fixed;
-using std::ios;
-using std::setprecision;
-using std::istream;
-using std::ostream;
-using std::__is_integer;
-using std::stack;
-using std::queue;
+// using std::string;
+// using std::cout;
+// using std::cin;
+// using std::fixed;
+// using std::ios;
+// using std::setprecision;
+// using std::istream;
+// using std::ostream;
+// using std::__is_integer;
+// using std::stack;
+// using std::queue;
+// Delete namespace importing
 
 namespace std{
 /*
@@ -38,9 +39,9 @@ inline bool c_isLetter(char c){return (c>='a'&& c<='z' || c>='A' && c<='Z');}/*�
 inline bool c_isLetterSmall(char c){return (c>='a' && c<='z');}/*返回是否是小写字母*/
 inline bool c_isLetterBig(char c){return (c>='A' && c<='Z');}/*返回是否是大写字母*/
 inline bool c_isNumber(char c){return (c>='0' && c<='9');}/*返回是否是数字*/
-unsigned long long c_to_num(string __tag){unsigned long long __record=0;for(int i=0;i<__tag.size();i++)  __record+=pow(10,__tag.size()-1-i)*(__tag[i]-'0');return __record;}
+unsigned long long c_to_num(std::string __tag){unsigned long long __record=0;for(int i=0;i<__tag.size();i++)  __record+=pow(10,__tag.size()-1-i)*(__tag[i]-'0');return __record;}
 /*将字符串转换为数字（↑无符号超长整型）（↓高精度）*/
-unsigned* c_to_num_huge(string __tag){unsigned *__record=new unsigned[__tag.size()];for(int  i=0;i<__tag.size();i++)  __record[__tag.size()-i-1]=__tag[__tag.size()-i-1]-'0';return __record;}
+unsigned* c_to_num_huge(std::string __tag){unsigned *__record=new unsigned[__tag.size()];for(int  i=0;i<__tag.size();i++)  __record[__tag.size()-i-1]=__tag[__tag.size()-i-1]-'0';return __record;}
 
 template<class XType,class YType>class c_crdinate{			//用于构建坐标系 
 	private:
@@ -63,6 +64,9 @@ template<class XType,class YType>class c_crdinate{			//用于构建坐标系
 		inline bool operator>=(const c_crdinate __anthr){return (this->__Xpos>=__anthr.__Xpos && this->__Ypos>=__anthr.__Ypos);}
 		inline XType operator[](int __get){if(__get>2 || __get<0) return 0;if(__get==0) return this->__Xpos;else return this->__Ypos;}
 };
+template<typename __Ta,typename __Tb>c_crdinate<__Ta,__Tb> make_crdinate(__Ta x,__Tb y){
+	return c_crdinate<__Ta,__Tb>(x,y);
+}
 
 /*typedef int integer;
  *typedef double DoubleNumber;
@@ -108,38 +112,38 @@ template<class type>class c_list{
 
 class str{
 	private:
-		string __inStr="";
+		std::string __inStr="";
 	public:
 		unsigned long long npos;
 		str(){this->npos=this->__inStr.npos;}
-		str(const string __give){this->__inStr=__give;this->npos=this->__inStr.npos;}
-		str(const string __give,const int __times){for(int __ii=0;__ii<__times;__ii++)for(int __jj=0;__jj<__give.size();__jj++)this->__inStr.push_back(__give[__jj]);}
+		str(const std::string __give){this->__inStr=__give;this->npos=this->__inStr.npos;}
+		str(const std::string __give,const int __times){for(int __ii=0;__ii<__times;__ii++)for(int __jj=0;__jj<__give.size();__jj++)this->__inStr.push_back(__give[__jj]);}
 		inline void refresh_npos(void){this->npos=this->__inStr.npos;}
-		inline void set(const string __given){this->__inStr=__given;}
-		string get(void){return this->__inStr;}
-		size_t size(void){return this->__inStr.size();}
-		size_t length(void){return this->__inStr.length();}
+		inline void set(const std::string __given){this->__inStr=__given;}
+		std::string get(void){return this->__inStr;}
+		std::size_t size(void){return this->__inStr.size();}
+		std::size_t length(void){return this->__inStr.length();}
 		void push_back(const char __c){this->__inStr.push_back(__c);}
-		char at(size_t __at){return this->__inStr.at(__at);}
-		string substrOf(size_t __spos=0,size_t __epos=0){return this->__inStr.substr(__spos,__epos-__spos+1);}
-		string substr(size_t __spos=0,size_t __len=1){return this->__inStr.substr(__spos,__len);}
-		string upper(void){string __temp;for(int __ii = 0;__ii < this->__inStr.size();__ii++){if(this->__inStr[__ii]<='z' && this->__inStr[__ii]>='a')	__temp.push_back(this->__inStr[__ii]-32);else	__temp.push_back(this->__inStr[__ii]);}return __temp;}
-		string smaller(void){string __temp;for(int __ii = 0;__ii < this->__inStr.size();__ii++){if(this->__inStr[__ii]<='Z' && this->__inStr[__ii]>='A')	__temp.push_back(this->__inStr[__ii]+32);else	__temp.push_back(this->__inStr[__ii]);}return __temp;}
+		char at(std::size_t __at){return this->__inStr.at(__at);}
+		std::string substrOf(std::size_t __spos=0,std::size_t __epos=0){return this->__inStr.substr(__spos,__epos-__spos+1);}
+		std::string substr(std::size_t __spos=0,std::size_t __len=1){return this->__inStr.substr(__spos,__len);}
+		std::string upper(void){std::string __temp;for(int __ii = 0;__ii < this->__inStr.size();__ii++){if(this->__inStr[__ii]<='z' && this->__inStr[__ii]>='a')	__temp.push_back(this->__inStr[__ii]-32);else	__temp.push_back(this->__inStr[__ii]);}return __temp;}
+		std::string smaller(void){std::string __temp;for(int __ii = 0;__ii < this->__inStr.size();__ii++){if(this->__inStr[__ii]<='Z' && this->__inStr[__ii]>='A')	__temp.push_back(this->__inStr[__ii]+32);else	__temp.push_back(this->__inStr[__ii]);}return __temp;}
 		char* c_type(void){char* __record=new char[this->__inStr.size()];for(int i=0;i<this->__inStr.size();i++)__record[i]=this->__inStr[i];return __record;}
 		void clear(void){this->__inStr.clear();delete this;}
 };
 
-template<typename T>void c_print(const T __outputTarget,const char end='\n'){ios::sync_with_stdio(false);cout<<__outputTarget<<end;}
-template<typename T>bool c_input(T &__inputTarget){ios::sync_with_stdio(false);if(cin>>__inputTarget) return true;else return false;}
-template<typename T>void c_print_float(const T __outputTarget,const int __decimalplaces=2,const char end='\n'){ios::sync_with_stdio(false);cout<<fixed<<setprecision(__decimalplaces)<<__outputTarget<<end;}
-template<typename T>void c_print_fixed(const T __outputTarget,const char end='\n'){ios::sync_with_stdio(false);cout<<fixed<<setprecision(0)<<__outputTarget<<end;}
-long long input_int(void){long long __tempi;ios::sync_with_stdio(false);cin>>__tempi;return __tempi;}
-char input_char(void){char __tempc;ios::sync_with_stdio(false);cin>>__tempc;return __tempc;}
-long double input_double(void){long double __tempd;ios::sync_with_stdio(false);cin>>__tempd;return __tempd;} 
-string input_str(bool __isGetline=false){string __temps;__isGetline?(getline(cin,__temps)):(cin>>__temps);return __temps;}
+template<typename T>void c_print(const T __outputTarget,const char end='\n'){std::ios::sync_with_stdio(false);std::cout<<__outputTarget<<end;}
+template<typename T>bool c_input(T &__inputTarget){std::ios::sync_with_stdio(false);if(std::cin>>__inputTarget) return true;else return false;}
+template<typename T>void c_print_float(const T __outputTarget,const int __decimalplaces=2,const char end='\n'){std::ios::sync_with_stdio(false);std::cout<<std::fixed<<std::setprecision(__decimalplaces)<<__outputTarget<<end;}
+template<typename T>void c_print_fixed(const T __outputTarget,const char end='\n'){ios::sync_with_stdio(false);std::cout<<std::fixed<<std::setprecision(0)<<__outputTarget<<end;}
+long long input_int(void){long long __tempi;ios::sync_with_stdio(false);std::cin>>__tempi;return __tempi;}
+char input_char(void){char __tempc;ios::sync_with_stdio(false);std::cin>>__tempc;return __tempc;}
+long double input_double(void){long double __tempd;ios::sync_with_stdio(false);std::cin>>__tempd;return __tempd;} 
+std::string input_str(bool __isGetline=false){std::string __temps;__isGetline?(std::getline(std::cin,__temps)):(std::cin>>__temps);return __temps;}
 
 
-typedef string error_msg;
+typedef std::string error_msg;
 template<class __type1,class __type2>class c_dictionary{//字典 
 	private:
 		__type1 *name;//存储key
@@ -153,14 +157,14 @@ template<class __type1,class __type2>class c_dictionary{//字典
 		c_dictionary(){this->name=new __type1[10000];this->data=new __type2[10000];MAX_SIZE=10000;}//默认大小10000 
 		c_dictionary(int __make_size){this->name=new __type1[__make_size];this->data=new __type2[__make_size];MAX_SIZE=__make_size;}//构造 
 		void make_word(__type1 __Name,__type2 __Data){this->name[size]=__Name;this->data[size++]=__Data;}//添加成员 
-		void append_dictionary(c_dictionary __rec){int __lenof=__rec.size;for(int i=0;i<__lenof;i++){if(size>=MAX_SIZE){cout<<this->__overloadError_msg;return;}this->make_word(__rec.get_name(i),__rec.at_subscript(i));}}//用于在字典中添加另一字典类 
-		__type2 operator[](const __type1 __at){long long __res_of_searching=this->__searching_in_dictionary(__at);if(__res_of_searching==-1)  cout<<this->__noFounError_msg;else return this->data[__res_of_searching];}//重载下标运算符 
+		void append_dictionary(c_dictionary __rec){int __lenof=__rec.size;for(int i=0;i<__lenof;i++){if(size>=MAX_SIZE){std::cout<<this->__overloadError_msg;return;}this->make_word(__rec.get_name(i),__rec.at_subscript(i));}}//用于在字典中添加另一字典类 
+		__type2 operator[](const __type1 __at){long long __res_of_searching=this->__searching_in_dictionary(__at);if(__res_of_searching==-1)  std::cout<<this->__noFounError_msg;else return this->data[__res_of_searching];}//重载下标运算符 
 		__type2 at(const __type1 __at){return this->operator[](__at);}//at函数 
 		__type2 at_subscript(const int __at){if(__at>=size){return __type2(0);}return this->data[__at];}//通过下标找元素 
 		__type1 get_name(const int __at){if(__at>=size){return __type1(0);}return this->name[__at];}//获取key
 		long long finding(const __type1 __what){return this->__searching_in_dictionary(__what);}//找__what的下标
-		ostream &print(ostream &os,const char end='\n'){os<<"{";for(int i=0;i<size;i++){os<<this->get_name(i)<<": "<<this->at_subscript(i);if(i!=size-1)  cout<<" , ";}os<<"}"<<end; return os;}
-		istream &read(istream &is,const unsigned __tag_size,const bool __colon_input=false){int __tag=(__tag_size+size>MAX_SIZE?MAX_SIZE:__tag_size);char rec_colon;__type1 __rec1;__type2 __rec2;for(int i=size;i<__tag;i++){if(__colon_input) is>>__rec1>>rec_colon>>__rec2;else is>>__rec1>>__rec2;this->make_word(__rec1,__rec2);} return is;}
+		std::ostream &print(std::ostream &os,const char end='\n'){os<<"{";for(int i=0;i<size;i++){os<<this->get_name(i)<<": "<<this->at_subscript(i);if(i!=size-1)  std::cout<<" , ";}os<<"}"<<end; return os;}
+		std::istream &read(std::istream &is,const unsigned __tag_size,const bool __colon_input=false){int __tag=(__tag_size+size>MAX_SIZE?MAX_SIZE:__tag_size);char rec_colon;__type1 __rec1;__type2 __rec2;for(int i=size;i<__tag;i++){if(__colon_input) is>>__rec1>>rec_colon>>__rec2;else is>>__rec1>>__rec2;this->make_word(__rec1,__rec2);} return is;}
 		void clear(void){delete this->name;delete this->data;delete this;}
 };
 template<typename _T1,typename _T2>c_dictionary<_T1,_T2> make_dictionary(_T1 __name,_T2 __data){
@@ -192,7 +196,7 @@ struct c_math{
 	long double factorial(short __x){long double __count=1;for(int j=__x;j>0;j--)__count*=j;return __count;}
 //	template<typename T>long double sqrt(T __x){return sqrt(__x);}
 //	↑sqrt函数会卡死(Why??)
- 	template<typename _Tp>inline _GLIBCXX_CONSTEXPR typename __gnu_cxx::__enable_if<__is_integer<_Tp>::__value, double>::__type Sqrt(_Tp __x)
+ 	template<typename _Tp>inline _GLIBCXX_CONSTEXPR typename __gnu_cxx::__enable_if<std::__is_integer<_Tp>::__value, double>::__type Sqrt(_Tp __x)
 	{ return __builtin_sqrt(__x); }
 //	template<typename T>inline long double fabs(T __x) {return fabs(__x);}
 //	已将fabs作用于abs 
@@ -201,7 +205,7 @@ struct c_math{
 //	将厘米转换英尺
 };
 
-template<typename T>ostream &display_array(ostream &os,T *__arr,unsigned __sizeof,unsigned __startat=0,const char split=' ',const char end=' '){
+template<typename T>std::ostream &display_array(std::ostream &os,T *__arr,unsigned __sizeof,unsigned __startat=0,const char split=' ',const char end=' '){
 	ios::sync_with_stdio(false);
 	for(int i=0;i<__sizeof;i++)  os<<__arr[i]<<((i==__sizeof-1)?end:split);
 	return os;
@@ -214,7 +218,7 @@ template<class type>class re_Stack{
 		inline type pop(void){type __tmp=this->__stack.top();this->__stack.pop();return __tmp;}
 		inline type top(void){return this->__stack.top();}
 		inline bool empty(void){return this->__stack.empty;}
-		const size_t size=this->__stack.size();
+		const std::size_t size=this->__stack.size();
 };
 template<class type>class re_Queue{
 	private:
@@ -224,7 +228,7 @@ template<class type>class re_Queue{
 		inline type pop(){type tmp=this->__queue.front();this->__queue.pop();return tmp;}
 		inline type front(){return this->__queue.front();}
 		inline bool empty(){return this->__queue.empty();}
-		inline size_t size(){return this->__queue.size();}
+		inline std::size_t size(){return this->__queue.size();}
 		inline type back(){return this->__queue.back();}
 };
 }
