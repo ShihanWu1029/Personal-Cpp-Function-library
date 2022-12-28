@@ -1,0 +1,23 @@
+//<rcpp> -*- rC++ -*-
+
+//Copyright (c) 2022 iNeverNobody, Github.
+//
+//
+/** 
+ *  @file rcpp
+ *  This headfile define the part of basic grammer.
+ *  Suggest C++14 at least.
+ *  @author iNeverNobody
+ *  @version v1.0
+ *  @copyright GNU Public License V3.0
+ *  @date 2022/12/28
+**/
+
+//Basic headfile
+#include<bits/stdc++.h>
+
+//Rcpp Main File
+#include "./Grammer/Basic.cpp"
+#include "./Grammer/Variable.cpp"
+#include "./Grammer/IO.cpp"
+#include "./Function/Compare.cpp"
