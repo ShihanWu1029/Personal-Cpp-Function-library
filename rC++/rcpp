@@ -21,3 +21,4 @@
 #include "./Grammer/Variable.cpp"
 #include "./Grammer/IO.cpp"
 #include "./Function/Compare.cpp"
+#include "./Function/Function.cpp"

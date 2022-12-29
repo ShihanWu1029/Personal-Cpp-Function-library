@@ -18,20 +18,5 @@
 #define startNamespace {
 #define endNamespace }
 
-//Main Function
-#define main int main(
-#define mainArgument int argv,char* argc[]
-#define startMain ){
-#define endMain return 0;}
-
-//function
-#define startFunc {
-#define endFunc }
-#define func void
-#define return_type(__Return_Type) __Return_Type
-#define Argument_list(__Argument_list) (__Argument_list)
-#define Argument_list_with_2(__Argument_list1,__Argument_list2) (__Argument_list1,__Argument_list2)
-#define Argument_list_with_3(__Argument_list1,__Argument_list2,__Argument_list3) (__Argument_list,__Argument_list2,__Argument_list3)
-
 //line end
 #define end ;

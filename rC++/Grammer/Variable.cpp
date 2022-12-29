@@ -42,10 +42,6 @@
 #define withFloatPtr <float*>
 #define withStringPtr <string*>
 
-
-
-
-
-
-
-
+//Autolist
+#define withList <
+#define endList >
